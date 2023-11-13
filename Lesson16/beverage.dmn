@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1rdourx" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.0.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.17.0">
+  <decision id="decideOnBeverage" name="Decide On Beverage">
+    <informationRequirement id="InformationRequirement_1nvqm6i">
+      <requiredDecision href="#decideOntimeOfDay" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_086cdki" hitPolicy="FIRST">
+      <input id="Input_1" label="Name of Recipient" camunda:inputVariable="name">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>name</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0pg9l9l">
+          <text>"Dale Cooper","Bear Grills","Yoko Ono"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_1p5xr10" label="Time of Day" camunda:inputVariable="timeOfDay">
+        <inputExpression id="LiteralExpression_1do0qnr" typeRef="string">
+          <text>timeOfDay</text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1yyjwal">
+          <text>"Afternoon ","Evening","Night","Morning"</text>
+        </inputValues>
+      </input>
+      <output id="Output_1" label="Drink" name="drink" typeRef="string" />
+      <rule id="DecisionRule_0sekhfv">
+        <inputEntry id="UnaryTests_081wohg">
+          <text>"Dale Cooper","Bear Grills"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03f9rqo">
+          <text>"Morning"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0mi2gcf">
+          <text>"Damm Fine Coffee"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_18na2te">
+        <inputEntry id="UnaryTests_0iicoxh">
+          <text>"Yoko Ono"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sm1vfp">
+          <text>"Night"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0i99ge6">
+          <text>"A single plum in perfume served in a mans hat"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0f7dwlq">
+        <inputEntry id="UnaryTests_1hwaeq1">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01jep7s">
+          <text>"Evening","Night"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0y0b85s">
+          <text>"Club Mate"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1nyit80">
+        <inputEntry id="UnaryTests_0k1txx2">
+          <text>"Bear Grills"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uzvzsf">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1h34aye">
+          <text>"Lemonade"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_15ainzh">
+        <inputEntry id="UnaryTests_1xxqaoc">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1shy3qi">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0n3sc3y">
+          <text>"Beer"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <decision id="decideOntimeOfDay" name="Decide on time of the Day">
+    <decisionTable id="DecisionTable_0x1qus1">
+      <input id="InputClause_0586lor" label="Hour of the day" camunda:inputVariable="hour">
+        <inputExpression id="LiteralExpression_096a5pd" typeRef="integer">
+          <text>hour</text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1mn4xfz" label="Time of the day" name="timeOfDay" typeRef="string">
+        <outputValues id="UnaryTests_11rkrp1">
+          <text>"Morning","Afternoon","Evening","Night"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_0bdj1o9">
+        <inputEntry id="UnaryTests_1bta4jp">
+          <text>[6..11]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05byvtt">
+          <text>"Morning"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1q2dkop">
+        <inputEntry id="UnaryTests_079ngs3">
+          <text>[12..16]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0zrj8l2">
+          <text>"Afternoon"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1afyzbp">
+        <inputEntry id="UnaryTests_0h5y1jw">
+          <text>[17..21]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15aq2sg">
+          <text>"Evening"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1tyqob2">
+        <inputEntry id="UnaryTests_0n0p93s">
+          <text>[22..23]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00sejau">
+          <text>"Night"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10r6vhg">
+        <inputEntry id="UnaryTests_10k3rww">
+          <text>[0..5]</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04afpt2">
+          <text>"Night"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="decideOnBeverage">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_06y6jvm" dmnElementRef="decideOntimeOfDay">
+        <dc:Bounds height="80" width="180" x="310" y="290" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0hdx1yx" dmnElementRef="InformationRequirement_1nvqm6i">
+        <di:waypoint x="400" y="290" />
+        <di:waypoint x="250" y="200" />
+        <di:waypoint x="250" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
